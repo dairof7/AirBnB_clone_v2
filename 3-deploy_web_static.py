@@ -6,6 +6,10 @@ from datetime import datetime
 from os.path import exists
 
 
+env.user = 'ubuntu'
+env.hosts = ['35.227.29.60', '54.196.131.110']
+
+
 def do_pack():
     """Function to compress files"""
     local("mkdir -p versions")
@@ -14,10 +18,6 @@ def do_pack():
     if result.failed:
         return None
     return result
-
-
-env.user = 'ubuntu'
-env.hosts = ['35.227.29.60', '54.196.131.110']
 
 
 def do_deploy(archive_path):
