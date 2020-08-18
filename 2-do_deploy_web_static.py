@@ -10,9 +10,9 @@ env.hosts = ['35.227.29.60', '54.196.131.110']
 
 def do_deploy(archive_path):
     """
-        deploy the archive to the webservers
+        Distributes an archive to your web servers
     """
-    if exists(archive_path) is False:
+    if not exists(archive_path):
         return False
 
     _path = archive_path.split("/")
@@ -33,7 +33,6 @@ def do_deploy(archive_path):
         run("sudo rm -rf /data/web_static/current")
         run("sudo ln -s /data/web_static/releases/" + path_no_ext +
             "/ /data/web_static/current")
-
         return True
-    except Exception:
+    except:
         return False
