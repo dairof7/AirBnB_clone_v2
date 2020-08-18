@@ -28,6 +28,16 @@ def do_deploy(archive_path):
             + path_no_ext + '/')
         # Delete the archive from the web server
         run("sudo rm /tmp/" + i + ".tgz")
+        run("sudo mv /data/web_static/releases/" + i +
+            "/web_static/* /data/web_static/releases/" + i + "/")
+
+        # Delete the symbolic link
+        run("sudo rm -rf /data/web_static/releases/" + i + "/web_static")
+        run("sudo rm -rf /data/web_static/current")
+
+        # Create a new the symbolic link
+        run("sudo ln -s /data/web_static/releases/" + i +
+            "/ /data/web_static/current")
     except Exception:
         return False
 
