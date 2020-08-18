@@ -4,13 +4,14 @@
 from fabric.api import run, put, env
 from os.path import exists
 
-
-env.hosts = ['35.227.29.60', '54.196.131.110']
 env.user = 'ubuntu'
+env.hosts = ['35.227.29.60', '54.196.131.110']
 
 
 def do_deploy(archive_path):
-    """Distributes an archive to your web servers."""
+    """
+        Distributes an archive to your web servers
+    """
     if not exists(archive_path):
         return False
 
