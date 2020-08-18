@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Generates a .tgz archive"""
+"""update - uncompress and create simbolic link"""
 
 from fabric.api import run, put, env
 from os.path import exists
@@ -11,12 +11,12 @@ env.user = 'ubuntu'
 
 def do_deploy(archive_path):
     """Distributes an archive to your web servers."""
+    if not exists(archive_path):
+        return False
+
     _path = archive_path.split('/')
     path_with_ext = _path[1]
     path_no_ext = _path[1].split('.')[0]
-
-    if not exists(archive_path):
-        return False
 
     try:
         # upload file to /tmp/ on webservers
