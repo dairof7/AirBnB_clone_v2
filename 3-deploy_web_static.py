@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Generates a Compress (tgz) update - uncompress and create simbolic link"""
 
-from fabric.api import local
+from fabric.api import put, run, env, local
 from datetime import datetime
 from os.path import exists
 
