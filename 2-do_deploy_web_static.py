@@ -23,7 +23,7 @@ def do_deploy(archive_path):
         run("sudo mkdir -p /data/web_static/releases/" + path_no_ext + "/")
         run("sudo tar -xzf /tmp/" + path_no_ext + ".tgz" +
             " -C /data/web_static/releases/" + path_no_ext + "/")
-        run("sudo rm /tmp/" + path_with_ext)
+        run("sudo rm /tmp/" + path_no_ext + ".tgz")
         run("sudo mv /data/web_static/releases/" + path_no_ext +
             "/web_static/* /data/web_static/releases/" + path_no_ext + "/")
         run("sudo rm -rf /data/web_static/releases/" +
