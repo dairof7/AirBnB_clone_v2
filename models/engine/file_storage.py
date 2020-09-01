@@ -10,6 +10,7 @@ from models.amenity import Amenity
 from models.review import Review
 import os.path
 
+
 class FileStorage:
     """This class manages storage of hbnb models in JSON format"""
     __file_path = 'file.json'
@@ -69,3 +70,7 @@ class FileStorage:
         if obj is not None:
             key = "{}.{}".format(obj.__class__.__name__, obj.id)
             del self.__objects[key]
+
+    def close(self):
+        """deserializing the JSON file to objects"""
+        self.reload()

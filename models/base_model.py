@@ -21,13 +21,18 @@ class BaseModel:
         """
         from datetime import datetime
         from models import storage
-        if kwargs != {}:
+        if kwargs:
+            if self.id is None:
+                self.id = str(uuid.uuid4())
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":
                     value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
                 if key != "__class__":
                     setattr(self, key, value)
-            self.id = str(uuid.uuid4())
+                if self.created_at is None:
+                    self.created_at = datetime.now()
+                if self.updated_at is None:
+                    self.updated_at = datetime.now()
 
         else:
             self.id = str(uuid.uuid4())
@@ -44,8 +49,8 @@ class BaseModel:
         """Updates updated_at with current time when instance is changed"""
         from models import storage
         self.updated_at = datetime.now()
-        storage.save()
         storage.new(self)
+        storage.save()
 
     def to_dict(self):
         """Convert instance into dict format"""
@@ -53,8 +58,8 @@ class BaseModel:
         dictionary.update(self.__dict__)
         dictionary.update({'__class__':
                           (str(type(self)).split('.')[-1]).split('\'')[0]})
-        dictionary['created_at'] = self.created_at.isoformat()
         dictionary['updated_at'] = self.updated_at.isoformat()
+        dictionary['created_at'] = self.created_at.isoformat()
         if '_sa_instance_state' in dictionary:
             del(dictionary['_sa_instance_state'])
         return dictionary
