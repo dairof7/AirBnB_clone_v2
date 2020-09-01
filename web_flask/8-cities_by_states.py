@@ -15,11 +15,13 @@ def close_db(self):
     """Close session"""
     storage.close()
 
+
 @app.route('/states_list', strict_slashes=False)
 def stateList():
     """function to execute"""
     states = storage.all(State).values()
     return render_template('7-states_list.html', states=states)
+
 
 @app.route('/cities_by_states', strict_slashes=False)
 def cityList():
