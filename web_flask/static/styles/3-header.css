@@ -1,0 +1,21 @@
+.logo {
+    height: 60px;
+    width: 142px;
+    background-image: url('../images/logo.png');
+    margin-left : 20px;
+    background-position: 0px 5px;
+}
+
+
+header{
+    color: white;
+    height: 70px;
+    width: 100%;
+    border-bottom : 1px solid #CCCCCC;
+}
+
+
+
+
+
+
